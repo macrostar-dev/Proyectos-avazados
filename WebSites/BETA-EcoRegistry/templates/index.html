@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Home - AuroraBright</title>
+    <style>
+        /* Estilos para el contenedor de la lista */
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        li.entry-item {
+            display: inline-block;
+            margin: 10px;
+            text-align: center;
+        }
+        
+        /* Botón con la imagen */
+        .image-button {
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            width: 400px; /* Tamaño ajustable */
+            height: 400px; /* Igualar altura y anchura para mantener cuadrado */
+            border-radius: 20px; /* Bordes redondeados */
+            overflow: hidden; /* Para mantener el borde redondeado en las imágenes */
+        }
+        
+        /* Imagen dentro del botón */
+        .image-button img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Recorta la imagen para adaptarse al tamaño */
+            filter: grayscale(100%); /* Imagen en blanco y negro */
+            transition: filter 0.3s ease; /* Transición suave al pasar el mouse */
+            border-radius: 20px; /* Aplicar bordes redondeados a la imagen */
+        }
+        
+        /* Texto dentro de la imagen */
+        .image-button span {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 10px 0;
+            background-color: rgba(0, 0, 0, 0.6); /* Fondo semi-transparente */
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+        
+        /* Cambiar el color de la imagen al pasar el mouse */
+        .image-button:hover img {
+            filter: grayscale(0%); /* Elimina el filtro en blanco y negro */
+        }
+        
+        /* Efecto en el nombre */
+        .image-button:hover span {
+            background-color: rgba(0, 0, 0, 0.8); /* Hacer el fondo un poco más oscuro al pasar el mouse */
+        }
+
+        /* Media Query para pantallas pequeñas */
+        @media (max-width: 768px) {
+            .image-button {
+                width: 300px; /* Cambiar el tamaño a 200px en pantallas pequeñas */
+                height: 300px; /* Mantener proporción cuadrada */
+            }
+
+            .image-button span {
+                font-size: 20px; /* Ajustar el tamaño del texto */
+            }
+
+            ul {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">AuroraBright</div>
+            <input type="checkbox" id="menu-toggle">
+            <label for="menu-toggle" class="menu-icon">&#9776;</label>
+            <ul class="nav-links">
+                <label for="menu-toggle" class="close-icon">&times;</label>
+                <li><a href="/">Categorías</a></li>
+                <li><a href="/new">Crear un perfil</a></li>
+            </ul>
+        </nav>
+    </header>
+    {% if entries %}
+        <ul>
+            {% for entry in entries %}
+                <li class="entry-item">
+                    <form action="/categoria/{{ entry.name }}" method="get">
+                        <button type="submit" class="image-button">
+                            <img src="{{ entry.img }}" alt="{{ entry.name }}">
+                            <span>{{ entry.name }}</span>
+                        </button>
+                    </form>
+                </li>         
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay entradas disponibles.</p>
+    {% endif %}
+</body>
+</html>

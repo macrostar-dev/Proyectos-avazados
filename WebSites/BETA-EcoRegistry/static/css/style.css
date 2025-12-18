@@ -1,0 +1,228 @@
+/* Ajustes generales para el body */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden; /* Evita el desplazamiento horizontal no deseado */
+  background: linear-gradient(180deg, #00010B 100%, #3061e980); 
+}
+
+header {
+margin-bottom: 70px; /* Añade un margen inferior al header */
+}
+
+/* Estilos para la barra de navegación */
+.navbar {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 10px 20px;
+background-color: rgba(0, 0, 0, 0.5);
+position: fixed; /* Fija la barra en la parte superior */
+top: 0; /* Se asegura de que esté en la parte superior */
+left: 0; /* Alinea la barra a la izquierda */
+width: 99%; /* Asegura que ocupe todo el ancho */
+z-index: 1000; /* Asegura que la barra esté encima de otros contenidos */
+}
+
+/* Estilo del logo */
+.navbar .logo {
+  color: white;
+  font-size: 1.5em;
+}
+
+/* Estilos para los enlaces del menú */
+.navbar .nav-links {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar .nav-links li {
+  margin: 0 15px;
+}
+
+.navbar .nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 1em;
+  transition: color 0.3s;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.navbar .nav-links a:hover {
+  color: #ddd;
+}
+
+/* Estilo del botón de contacto */
+.navbar .contact-button {
+  background-color: #31aa78;
+  padding: 7px 10px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  box-sizing: border-box;
+}
+
+.navbar .contact-button:hover {
+  background-color: #26f87386;
+  color: #F8FAFC;
+}
+
+/* Icono del menú hamburguesa */
+.navbar .menu-icon {
+  display: none;
+  font-size: 1.8em;
+  color: white;
+  cursor: pointer;
+}
+
+/* Icono de cierre (X) */
+.navbar .close-icon {
+  display: none;
+  font-size: 4em;
+  color: white;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+
+/* Esconder el checkbox */
+#menu-toggle {
+  display: none;
+}
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 768px) {
+  .navbar .nav-links {
+      display: flex;
+      flex-direction: column;
+      background-color: #333333; /* Fondo semitransparente */
+      border-radius: 20px; /* Bordes redondeados */
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      padding-top: 100px; /* Deja espacio para el logo y la "X" */
+      transform: translateX(100%); /* Oculta el menú fuera de la pantalla */
+      transition: transform 0.3s ease;
+      z-index: 999; /* Asegura que el menú de navegación esté encima del contenido */
+  }
+
+  .navbar .nav-links li {
+      margin: 20px 0;
+      text-align: center;
+  }
+
+  .navbar .menu-icon {
+      display: block;
+   
+      margin-right: 30px;
+  }
+
+  /* Mostrar el icono de cierre (X) cuando el menú está abierto */
+  #menu-toggle:checked + .menu-icon + .nav-links .close-icon {
+      display: block;
+  }
+
+  #menu-toggle:checked + .menu-icon + .nav-links {
+      transform: translateX(0); /* Desplaza el menú a la vista */
+  }
+
+  /* Ocultar el ícono del menú cuando el menú está abierto */
+  #menu-toggle:checked + .menu-icon {
+      display: none;
+  }
+}
+
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #f4f4f4;
+}
+
+.entry-title {
+  font-size: 2.5em;
+  color: #0c9f5a;
+  text-align: right;
+  margin-bottom: 20px;
+  color: var(--title-color, #059f57);
+}
+
+.entry-content {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.entry-description {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  margin-right: 20px;
+  flex: 1;
+}
+
+.entry-image {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.species-list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.species {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 15px;
+  width: 30%;
+  text-align: center;
+}
+
+.species-image {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.back-button {
+  display: block;
+  width: 200px;
+  margin: 30px auto;
+  padding: 10px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 10px;
+}
+
+.back-button:hover {
+  background-color: #555;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

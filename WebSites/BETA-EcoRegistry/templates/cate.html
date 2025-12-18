@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Categoría - Entradas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            margin-bottom: 40px; /* Añade un margen inferior al header */
+        }
+
+        .entry-title {
+            font-size: 2.5em; 
+            color: var(--title-color, #059f57);
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        
+        .entry-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .entry-description {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            flex: 1;
+            font-size: 20px;
+            min-width: 280px;
+        }
+        
+        .entry-image {
+            border-radius: 10%;
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+        }
+        
+        .species-title {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .species-list {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .species {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 15px;
+            width: 100%;
+            max-width: 30%;
+            text-align: center;
+        }
+        
+        .species-image {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+        
+        .back-button {
+            display: block;
+            width: 200px;
+            margin: 30px auto;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 10px;
+        }
+        
+        .back-button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">AuroraBright</div>
+            <input type="checkbox" id="menu-toggle">
+            <label for="menu-toggle" class="menu-icon">&#9776;</label>
+            <ul class="nav-links">
+                <label for="menu-toggle" class="close-icon">&times;</label>
+                <li><a href="/">Categorías</a></li>
+                <li><a href="/new">Crear un perfil</a></li>
+            </ul>
+        </nav>
+    </header>
+    {% if entries %}
+    <div class="entries-container">
+        {% for entry in entries %}
+            <div class="entry">
+                <h1 class="entry-title">{{ entry.name }}</h1>
+                <div class="entry-content">
+                    <img src="{{ entry.img }}" alt="{{ entry.name }}" class="entry-image">
+                    <p class="entry-description">{{ entry.text }}</p>
+                </div>
+                <h2 class="entry-title">Especies:</h2>
+                <div class="species-list">
+                    <div class="species">
+                        <h2>{{ entry.especie_1 }}</h2>
+                        <img src="{{ entry.img_especie_1 }}" alt="{{ entry.especie_1 }}" class="species-image">
+                        <p>{{ entry.descripcion_especie_1 }}</p>
+                    </div>
+                    <div class="species">
+                        <h2>{{ entry.especie_2 }}</h2>
+                        <img src="{{ entry.img_especie_2 }}" alt="{{ entry.especie_2 }}" class="species-image">
+                        <p>{{ entry.descripcion_especie_2 }}</p>
+                    </div>
+                    <div class="species">
+                        <h2>{{ entry.especie_3 }}</h2>
+                        <img src="{{ entry.img_especie_3 }}" alt="{{ entry.especie_3 }}" class="species-image">
+                        <p>{{ entry.descripcion_especie_3 }}</p>
+                    </div>
+                </div>
+                <!-- Formulario para eliminar la entrada -->
+                <form action="{{ url_for('delete_entry', id=entry.id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta entrada?');" >
+                    <button class="back-button" type="submit">Eliminar</button>
+                </form>
+            </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>No hay entradas disponibles.</p>
+    {% endif %}
+</body>
+</html>
+

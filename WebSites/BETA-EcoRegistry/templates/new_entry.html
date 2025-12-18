@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Agregar Nueva Entrada</title>
+    <style>
+        /* Estilos generales */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden; /* Evita el desplazamiento horizontal no deseado */
+            background: linear-gradient(180deg, #00010B 100%, #3061e980);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white; /* Color de texto blanco para mayor contraste */
+        }
+        
+        /* Centra el contenido dentro del contenedor */
+        .form-container {
+            background-color: #ffffffd9;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            max-width: 600px;
+            width: 100%;
+            max-height: 80vh; /* Altura máxima para el contenedor */
+            overflow-y: auto; /* Permite el desplazamiento vertical */
+            color: #333; /* Color del texto en la tarjeta */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centra horizontalmente el contenido */
+        }
+
+        /* Estilo minimalista de la barra de desplazamiento */
+        .form-container::-webkit-scrollbar {
+            width: 8px; /* Ancho de la barra de desplazamiento */
+        }
+
+        /* Estilo minimalista de la barra de desplazamiento */
+        .form-container::-webkit-scrollbar {
+            width: 0px; /* Ancho de la barra de desplazamiento */
+        }
+        
+        .form-container::-webkit-scrollbar-track {
+            background: transparent; /* Fondo del track (barra de desplazamiento) */
+        }
+        
+        .form-container::-webkit-scrollbar-thumb {
+            background: transparent; /* Color de la barra */
+        }
+        
+
+                /* Resto del estilo */
+        h1 {
+            text-align: center;
+            color: #3061e9; /* Azul para el encabezado */
+        }
+
+        /* Asegura que el formulario ocupe el espacio disponible */
+        form {
+            width: 100%;
+            max-width: 500px; /* Ajusta el ancho máximo del formulario */
+        }
+
+        /* Otros estilos */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* Estilo del botón de envío */
+        .submit-button {
+            padding: 8px 16px; /* Ajusta el tamaño del botón */
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 20px; /* Tamaño de fuente más pequeño */
+            margin-top: 20px; /* Espacio superior para separación */
+            align-self: center;
+        }
+
+        .submit-button:hover {
+            background-color: #45a049;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #3061e9;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            color: #204090;
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">AuroraBright</div>
+            <input type="checkbox" id="menu-toggle">
+            <label for="menu-toggle" class="menu-icon">&#9776;</label>
+            <ul class="nav-links">
+                <label for="menu-toggle" class="close-icon">&times;</label>
+                <li><a href="/">Categorías</a></li>
+                <li><a href="/new">Crear un perfil</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="form-container">
+        <form action="/add" method="POST">
+            <div class="form-group">
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="img">Imagen (URL):</label>
+                <input type="text" id="img" name="img" required>
+            </div>
+
+            <div class="form-group">
+                <label for="text">Texto:</label>
+                <textarea id="text" name="text" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="especie_1">Nombre de la primera especie:</label>
+                <textarea id="especie_1" name="especie_1" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="descripcion_especie_1">Descripción de la primera especie:</label>
+                <textarea id="descripcion_especie_1" name="descripcion_especie_1" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="img_especie_1">Imagen de la primera especie (URL):</label>
+                <input type="text" id="img_especie_1" name="img_especie_1" required>
+            </div>
+
+            <div class="form-group">
+                <label for="especie_2">Nombre de la segunda especie:</label>
+                <textarea id="especie_2" name="especie_2" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="descripcion_especie_2">Descripción de la segunda especie:</label>
+                <textarea id="descripcion_especie_2" name="descripcion_especie_2" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="img_especie_2">Imagen de la segunda especie (URL):</label>
+                <input type="text" id="img_especie_2" name="img_especie_2" required>
+            </div>
+
+            <div class="form-group">
+                <label for="especie_3">Nombre de la tercera especie:</label>
+                <textarea id="especie_3" name="especie_3" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="descripcion_especie_3">Descripción de la tercera especie:</label>
+                <textarea id="descripcion_especie_3" name="descripcion_especie_3" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="img_especie_3">Imagen de la tercera especie (URL):</label>
+                <input type="text" id="img_especie_3" name="img_especie_3" required>
+            </div>
+
+            <button type="submit" class="submit-button">Agregar Entrada</button>
+        </form>
+    </div>
+</body>
+</html>
